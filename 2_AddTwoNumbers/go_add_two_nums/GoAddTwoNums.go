@@ -30,7 +30,7 @@ func main() {
 			},
 		},
 	}
-	l := addTwo(l1, l2)
+	l := AddTwo(l1, l2)
 	for ; l != nil; l = l.Next {
 		fmt.Println(l.Val)
 	}
@@ -41,7 +41,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func addTwo(l1 *ListNode, l2 *ListNode) *ListNode {
+func AddTwo(l1 *ListNode, l2 *ListNode) *ListNode {
 	var l *ListNode = &ListNode{}
 	r := l
 	for {
