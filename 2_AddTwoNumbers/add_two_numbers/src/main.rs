@@ -11,8 +11,9 @@ fn main() {
         next: None
     }));
 
-    match b {
-        Some(d) => {println!("{:?}", d);}
-        _ => {println!("None")}
+    if let None = b {
+        println!("how can this happen!")
+    } else {
+        println!("I know it!")
     }
 }
