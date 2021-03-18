@@ -13,17 +13,17 @@ mod add_tn {
         let mut ll1 = l1;
         let mut ll2 = l2;
     
-        let mut l = r;
+        let mut l = &mut r;
         
         loop {
             match l {
                 Some(ref mut node) => {
                     let mut v1: i32 = 0;
                     let mut v2: i32 = 0;
-                    if let Some(lv1) = ll1 {
+                    if let Some(ref lv1) = ll1 {
                         v1 = lv1.val;
                     }
-                    if let Some(lv2) = ll2 {
+                    if let Some(ref lv2) = ll2 {
                         v2 = lv2.val;
                     }
                     let v = v1 + v2;
@@ -37,14 +37,14 @@ mod add_tn {
                         node.val = node.val + v
                     }
                     
-                    ll1 = if let Some(lv1) = ll1 {
-                        lv1.next
+                    ll1 = if let Some(l1v) = ll1 {
+                        l1v.next
                     } else {
                         None
                     };
     
-                    ll2 = if let Some(lv2) = ll2 {
-                        lv2.next
+                    ll2 = if let Some(l2v) = ll2 {
+                        l2v.next
                     } else {
                         None
                     };
@@ -57,7 +57,7 @@ mod add_tn {
                             }));
                         }
     
-                        l = node.next;
+                        l = &mut node.next;
                     } else {
                         break;
                     }
@@ -107,6 +107,7 @@ fn main() {
     
     let mut a = add_two_numbers(l1, l2);
     loop {
+        println!("{}", )
         match a {
             Some(node) => {
                 println!("{:?}", node);
