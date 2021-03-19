@@ -34,7 +34,18 @@ mod add_tn {
                             next: None
                         }));
                     } else {
+                        //node.val为1，v如果是9， 1+9需要进位
                         node.val = node.val + v
+                    }
+
+                    if node.val > 9 {
+                        node.val = node.val - 10;
+                        if node.next.is_none() {
+                            node.next = Some(Box::new(ListNode{
+                                val: 1,
+                                next: None
+                            }));
+                        }
                     }
                     
                     ll1 = if let Some(l1v) = ll1 {
@@ -50,9 +61,9 @@ mod add_tn {
                     };
     
                     if !ll1.is_none() || !ll2.is_none() {
-                        if !node.next.is_none() {
+                        if node.next.is_none() {
                             node.next = Some(Box::new(ListNode{
-                                val: 1,
+                                val: 0,
                                 next: None
                             }));
                         }
@@ -78,7 +89,7 @@ use crate::add_tn::*;
 
 fn main() {
     let l1 = Some(Box::new(ListNode{
-        val: 1i32,
+        val: 5i32,
         next: Some(Box::new(ListNode{
             val: 2i32,
             next: Some(Box::new(ListNode{
@@ -92,9 +103,9 @@ fn main() {
     }));
 
     let l2 = Some(Box::new(ListNode{
-        val: 1i32,
+        val: 5i32,
         next: Some(Box::new(ListNode{
-            val: 2i32,
+            val: 7i32,
             next: Some(Box::new(ListNode{
                 val: 3i32,
                 next: Some(Box::new(ListNode{
@@ -107,10 +118,9 @@ fn main() {
     
     let mut a = add_two_numbers(l1, l2);
     loop {
-        println!("{}", )
         match a {
             Some(node) => {
-                println!("{:?}", node);
+                println!("{:?}", node.val);
                 a = node.next;
             }
             _ => {

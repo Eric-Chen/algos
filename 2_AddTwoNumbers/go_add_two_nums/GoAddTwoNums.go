@@ -62,6 +62,13 @@ func AddTwo(l1 *ListNode, l2 *ListNode) *ListNode {
 			l.Val = l.Val + v
 		}
 
+		if l.Val > 9 {
+			l.Val = l.Val - 10
+			l.Next = &ListNode{
+				Val: 1,
+			}
+		}
+
 		if l1 != nil {
 			l1 = l1.Next
 		}
