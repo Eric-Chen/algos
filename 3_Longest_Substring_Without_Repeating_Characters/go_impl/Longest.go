@@ -3,36 +3,23 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(lengthOfLongestSubstring("abcab"))
+	fmt.Println(lengthOfLongestSubstring("bbbbb"))
 }
 
 func lengthOfLongestSubstring(s string) int {
-	i, j := 0, 0
-	if len(s) == 1 {
-		return 1
-	}
 	maxLen := 0
-	jump := false
-	for i < len(s) {
-		jump = false
-		m := make(map[string]int)
-		for j = i + 1; j < len(s); j++ {
-			l, ok := m[string(s[j])]
-			if ok {
-				if l > i {
-					i = l
-					jump = true
-					break
-				}
-			} else {
-				m[string(s[j])] = j
-			}
-			maxLen = max(j-i, maxLen)
+	length := 0
+	m := make(map[string]int)
+	for i := 0; i < len(s); i++ {
+		if l, ok := m[string(s[i])]; ok && l >= i-length {
+			length = i - l
+		} else {
+			length++
 		}
-		if !jump {
-			i++
-		}
+		m[string(s[i])] = i
+		maxLen = max(maxLen, length)
 	}
+
 	return maxLen
 }
 
