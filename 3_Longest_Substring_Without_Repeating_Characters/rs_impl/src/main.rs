@@ -15,7 +15,9 @@ pub fn length_of_longest_substring(s: String) -> i32 {
             Some(l) => {
                 if l >= &(i - length) {
                     length = i - l;
-                } 
+                } else {
+                    length = length + 1
+                }
             }
             None => {
                 length = length + 1
@@ -29,11 +31,9 @@ pub fn length_of_longest_substring(s: String) -> i32 {
 }
 
 pub fn max(i: usize, j: usize) -> usize {
-    let mut result = i;
     if i > j {
-        result = i;
+        return i
     } else {
-        result = j;
+        return j;
     }
-    result
 }
